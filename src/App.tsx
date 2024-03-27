@@ -14,6 +14,7 @@ import { getUser } from './redux/api/userApi'
 import { getUserSelector } from './redux/store'
 import ProtectedRoute from './components/ProtectedRoute'
 import Checkout from './pages/Checkout'
+import { User } from './types/types'
 
 const Home = lazy(()=>import("./pages/Home"))
 const Search = lazy(()=>import("./pages/Search"))
