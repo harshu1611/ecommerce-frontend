@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+
 import OrderCard from '../components/OrderCard'
 import { useMyOrdersQuery } from '../redux/api/orderApi'
 import { useSelector } from 'react-redux'

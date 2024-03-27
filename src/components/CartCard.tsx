@@ -1,11 +1,10 @@
-import React from 'react'
-import img from '../assets/images/laptop.jpg'
-import { FaDeleteLeft } from 'react-icons/fa6'
+
+
 import { AiFillDelete } from "react-icons/ai";
 import { server } from '../redux/store';
 import { useDispatch } from 'react-redux';
 import { addToCart, calculateTotal } from '../redux/reducer/cartReducer';
-import { CartItem } from '../types/types';
+
 
 
 const CartCard = ({data}: any) => {

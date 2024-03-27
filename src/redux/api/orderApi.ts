@@ -1,15 +1,14 @@
 import {
-  CreateApi,
+ 
   createApi,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
 import {
     AllOrders,
-  FilterRequestType,
-  FilterResponseType,
+
   MessageResponse,
   NewOrderRequestBody,
-  ProductsResponse,
+
 } from "../../types/apiTypes";
 
 export const orderApi = createApi({

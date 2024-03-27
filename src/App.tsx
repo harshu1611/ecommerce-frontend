@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import Loading from './components/Loading'
@@ -58,7 +58,7 @@ useEffect(() => {
  })
 }, [])
 
-  const {user,loading}= useSelector(getUserSelector)
+  const {user}= useSelector(getUserSelector)
   return   (
     <BrowserRouter>
 

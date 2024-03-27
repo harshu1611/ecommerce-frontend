@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartReducerInitialState } from "../../types/reducer-types";
-import { SiPayloadcms } from "react-icons/si";
 import { CartItem } from "../../types/types";
 
 const initialState: CartReducerInitialState={
@@ -57,7 +56,7 @@ export const cartReducer=createSlice({
          addShippingDetails:(state,action)=>{
           state.shippingInfo= action.payload
          },
-         resetCart: (state)=> initialState
+         resetCart: ()=> initialState
     }
 })
 

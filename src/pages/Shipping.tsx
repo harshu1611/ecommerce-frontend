@@ -1,6 +1,5 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi'
-import { FaBackward } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addShippingDetails, resetCart } from '../redux/reducer/cartReducer'
@@ -27,7 +26,7 @@ const Shipping = () => {
         pinCode: ''
     })
 
-    const [addressS, setAddress]= useState("")
+
 
     const changeHandler=(e: any)=>{
         setShippingDetails((prev)=>({...prev, [e.target.name]: e.target.value}))
@@ -72,11 +71,11 @@ const Shipping = () => {
             name: "Acme Corp",
             order_id: order.id,
             handler: async(res: any) => {
-
+                console.log(res)
                try {
                 const result= await newOrder(orderData);
                 dispatch(resetCart())
-                // console.log(result)
+                console.log(result)
                 toast.success("Order Placed")
                 navigate("/orders")
                } catch (error) {

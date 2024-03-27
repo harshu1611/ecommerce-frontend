@@ -86,8 +86,6 @@
 // };
 
 
-import axios from 'axios';
-import React from 'react'
 import { useCallback } from "react";
 import useRazorpay from "react-razorpay"
 import { useLocation } from 'react-router-dom';

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { server } from "../store";
+
 import { MessageResponse, UserResponse } from "../../types/apiTypes";
 import { User } from "../../types/types";
 import axios from "axios";

@@ -1,5 +1,4 @@
-import React from 'react'
-import laptop from '../assets/images/laptop.jpg'
+
 import { server } from '../redux/store'
 import { useDispatch } from 'react-redux'
 import { addToCart, calculateTotal } from '../redux/reducer/cartReducer'
@@ -11,7 +10,7 @@ type ProductProps={
 }
 
 
-const ProductCard = ({productId,photo,name,price,stock}: ProductProps) => {
+const ProductCard = ({productId,photo,name,price}: ProductProps) => {
 
   const dispatch= useDispatch();
 
