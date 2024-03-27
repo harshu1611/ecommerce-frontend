@@ -1,0 +1,9 @@
+[
+    {
+        "productId": "1",
+        "name": "Laptop",
+        "photo": "./images/laptop.jpg",
+        "price": 69990,
+        "stock": 6
+    }
+]
