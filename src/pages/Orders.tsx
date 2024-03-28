@@ -4,13 +4,26 @@ import { useMyOrdersQuery } from '../redux/api/orderApi'
 import { useSelector } from 'react-redux'
 import { getUserSelector } from '../redux/store'
 import Skeleton from 'react-loading-skeleton'
+import { useEffect, useState } from 'react'
+import { AllOrders } from '../types/apiTypes'
 
 const Orders = () => {
-  
   const user=useSelector(getUserSelector)
+ 
+
+
+  const [ordersData,setOrdersData]= useState<AllOrders>()
+  // const [loading, setLoading]= useState(false)
+
+  
+
+  
+  
   const {data , isLoading}= useMyOrdersQuery(user.user._id)
 
- console.log(data)
+  console.log(user.user._id)
+
+//  console.log(ordersData)
   
 
   return (

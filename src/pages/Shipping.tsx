@@ -16,7 +16,6 @@ const Shipping = () => {
     const [Razorpay] = useRazorpay();
    
     // console.log(orderData)
-    const user= useSelector(getUserSelector)
     // console.log(user)
     const [shippingDetails, setShippingDetails]=useState({
         address:'',
@@ -25,6 +24,7 @@ const Shipping = () => {
         country: '',
         pinCode: ''
     })
+    const navigate=useNavigate()
 
 
 
@@ -33,116 +33,23 @@ const Shipping = () => {
     }
     const setShipping=()=>{
         dispatch(addShippingDetails(shippingDetails))
-        console.log(shippingDetails)
+        // console.log(shippingDetails)
+        navigate("/pay")
+
 
     }
 
-    const {cartItems,
-        discount,
-        shippingCharges,
-        shippingInfo,
-        subTotal,
-        tax,
-        total}= useSelector(getCartDetails)
 
-    const orderData: NewOrderRequestBody={
-        orderItems: cartItems,
-        subTotal: subTotal,
-        tax:tax,
-        shippingCharges: shippingCharges,
-        discount: discount,
-        total: total,
-        shippingInfo : shippingInfo,
-        user: user.user._id
-    }
-    const navigate=useNavigate()
+
+
 
     // console.log(orderData)
    
 
-    const [newOrder]= useNewOrderMutation()
-    const handlePayment = useCallback(async(order:any) => {
-        //   const order = await createOrder(params);
-    
-          const options = {
-            key: import.meta.env.RAZORPAY_KEY,
-            amount: (order.amount),
-            currency: "INR",
-            name: "Acme Corp",
-            order_id: order.id,
-            handler: async(res: any) => {
-                console.log(res)
-               try {
-                const result= await newOrder(orderData);
-                dispatch(resetCart())
-                console.log(result)
-                toast.success("Order Placed")
-                navigate("/orders")
-               } catch (error) {
-                    console.log(error)
-               }
-            
-            },
-           
-          };
-      
-          const rzpay = new Razorpay(options);
-    
-          rzpay.on("payment.failed", function (response: any) {
-            console.log(response.error.code);
-            alert(response.error.description);
-            // alert(response.error.source);
-            // alert(response.error.step);
-            // alert(response.error.reason);
-            // alert(response.error.metadata.order_id);
-            // alert(response.error.metadata.payment_id);
-          });
-        
-          rzpay.open();
-    
-          // rzpay.on("adminRoute")
-        //   rzpay.open();
-        }, [Razorpay]);
 
  
 
-    const submitHandler=async()=>{
-        setShipping();
-
-        try {
-             
-            const {data} = await axios.post(`${server}/api/v1/payment/create`, {
-                amount: orderData.total
-            },
-            {
-                headers:{
-                    "Content-Type": "application/json"
-                }
-
-            }
-            
-            )
-
-            // navigate("/pay" , {
-            //     state: data.order
-            // })
-
-            await handlePayment(data.order)
-
-            
-        } 
-        
-        
-        
-        catch (error) {
-            toast.error("Error in creating payment")
-        }   
-
-      
-
-
-       
-    }
+   
   return (
     <div className='flex flex-col justify-center items-center p-4 space-y-4'>
         <button className='absolute top-8 left-8' onClick={()=>navigate("/cart")}>
@@ -154,13 +61,13 @@ const Shipping = () => {
         <input className='border-gray-300 border-2 border-solid rounded-md p-2 w-96' placeholder='Country' value={shippingDetails.country} onChange={(e)=>changeHandler(e)} name='country'  type='text'></input>
         <input className='border-gray-300 border-2 border-solid rounded-md p-2 w-96' placeholder='State' value={shippingDetails.state}  onChange={(e)=>changeHandler(e)}  name='state'  type='text'></input>
         <input className='border-gray-300 border-2 border-solid rounded-md p-2 w-96' placeholder='pinCode' value={shippingDetails.pinCode} onChange={(e)=>changeHandler(e)}  name='pinCode' type='number'></input>
-        {/* <button className='bg-green-600 w-auto p-3 rounded-lg' onClick={()=>setShipping()}>
-            <h1 className='text-white font-semibold'>Add shipping</h1>
-        </button> */}
-    
-        <button className='bg-green-600 w-auto p-3 rounded-lg' onClick={submitHandler}>
-            <h1 className='text-white font-semibold'>PAY NOW</h1>
-        </button>
+       
+   
+        <button className='bg-green-600 w-auto p-3 rounded-lg' onClick={setShipping}>
+        <h1 className='text-white font-semibold'>PAY NOW</h1>
+    </button>
+      
+       
     </div>
   )
 }
